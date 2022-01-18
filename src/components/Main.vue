@@ -2,12 +2,7 @@
 <div class="container-fluid bg">
     <div class="container-70">
         <div class="row row-cols-6 pt-5 pb-5" v-if="cards">
-            <div class="col py-4 g-3 mx-3 flex" v-for="(card, index) in cards" :key="index">
-                <img :src="card.poster" alt="">
-                <h2>{{ card.title }}</h2>
-                <h3>{{ card.author }}</h3>
-                <h4>{{ card.year }}</h4>
-            </div>
+            <Card v-for="(card, index) in cards" :key="index" :poster="card.poster" :poster-alt="card.title" :title="card.title" :author="card.author" :year="card.year"/>
         </div>
     </div>
 </div>
@@ -15,8 +10,12 @@
 
 <script>
 import axios from 'axios';
+import Card from './Card.vue';
 export default {
 name: 'Main',
+components: {
+    Card,
+},
 data(){
     return{
         cardsApi: 'https://flynn.boolean.careers/exercises/api/array/music',
@@ -37,7 +36,7 @@ created() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 *{
     border: 0;
     margin: 0;
